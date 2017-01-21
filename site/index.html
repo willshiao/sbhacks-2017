@@ -29,8 +29,8 @@ require([
   var view = new MapView({
     container: "viewDiv",  // Reference to the scene div created in step 5
     map: map,  // Reference to the map object created before the scene
-    zoom: 4,  // Sets the zoom level based on level of detail (LOD)
-    center: [15, 65]  // Sets the center point of view in lon/lat
+    zoom: 16,  // Sets the zoom level based on level of detail (LOD)
+    center: [-119.85, 34.41]  // Sets the center point of view in lon/lat
   });
 
   const marker = new SimpleMarkerSymbol({
@@ -42,15 +42,39 @@ require([
   });
 
   const points = [
-    [ 34.410938, -119.847057 ],
-    [ 34.413242, -119.855637 ]
+    {
+      info: {
+        Name: 'Ortega Dining Commmons',
+        Hours: '9 AM - 6 PM',
+      },
+      coords: [ 34.410938, -119.847057 ]
+    },
+    {
+      info: {
+        Name: 'Freebirds',
+        Hours: '9 AM - 4 PM',
+      },
+      coords: [ 34.413242, -119.855637 ]
+    }
   ].map(p => {
     return new Graphic({
       geometry: new Point({
-        latitude: p[0],
-        longitude: p[1]
+        latitude: p.coords[0],
+        longitude: p.coords[1]
       }),
-      symbol: marker
+      symbol: marker,
+      attributes: p.info,
+      popupTemplate: { // autocasts as new PopupTemplate()
+        title: '{Name}',
+        content: [{
+          type: 'fields',
+          fieldInfos: [{
+            fieldName: 'Name'
+          }, {
+            fieldName: 'Hours'
+          }]
+        }]
+      }
     });
   });
 
