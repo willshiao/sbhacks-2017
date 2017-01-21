@@ -1,0 +1,17 @@
+{
+  "name": "sbhacks-2017-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "William Shiao",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "config": "^1.24.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.7"
+  }
+}
