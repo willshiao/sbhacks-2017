@@ -3,16 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Add Seller</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 </head>
 <body>
-  <form action="/sellers" method="POST">
-    <label for="name">Location Name</label>
-    <input type="text" name="name" required>
-    <label for="latitude">Latitude</label>
-    <input type="number" type="any" step="any" name="latitude" id="latitude" required>
-    <label for="longitude">Longitude</label>
-    <input type="number" type="any" step="any" name="longitude" id="longitude" required>
-    <button type="submit">Add Location</button>
-  </form>
+  <div class="container">
+    <h1>Add Seller</h1>
+    <form action="/sellers" method="POST">
+      <div class="form-group">
+        <label for="name">Location Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Location Name" required>
+      </div>
+      <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input type="number" type="any" step="any" name="latitude" id="latitude" class="form-control" placeholder="latitude" required>
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude</label>
+        <input type="number" type="any" step="any" name="longitude" id="longitude" class="form-control" placeholder="longitude" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Location</button>
+    </form>
+  </div>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
 </html>
