@@ -1,14 +1,19 @@
 'use strict';
 
+const fs = require('fs');
 const router = require('express').Router();
-const Seller = require('../models/Seller');
 const bodyParser = require('body-parser');
 const Promise = require('bluebird');
+const config = require('config');
+const auth = require('basic-auth');
 const _ = require('lodash');
-const fs = require('fs');
+
+const Seller = require('../models/Seller');
 
 router.use(bodyParser.urlencoded({extended: true}));
+router.use('/sellers', authenticate);
 // router.use(bodyParser.json());
+
 
 router.get('/', (req, res) => {
   fs.createReadStream('pages/hackathon.html').pipe(res);
@@ -83,5 +88,18 @@ router.post('/sellers/addInventory', (req, res) => {
       return res.json({success: true});
     });
 });
+
+
+function authenticate(req, res, next) {
+  const credentials = auth(req);
+  if(!credentials || credentials.name !== config.get('credentials.name')
+    || credentials.pass !== config.get('credentials.pass')) {
+    res.statusCode = 401;
+    res.setHeader('WWW-Authenticate', 'Basic realm="Mangement Console"');
+    res.end('Access denied');
+  } else {
+    next();
+  }
+}
 
 module.exports = router;
