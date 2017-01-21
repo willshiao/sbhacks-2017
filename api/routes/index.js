@@ -31,7 +31,7 @@ router.post('/sellers', (req, res) => {
 });
 
 router.post('/sellers/bulk', (req, res) => {
-  Promise.all(_.chunk(req.body.bulk.split(/\r?\n/), 3)
+  Promise.all(_.chunk(req.body.bulk.split(/\r?\n/).filter(s => s.trim().length > 0), 3)
     .map(c => {
       if(c.length < 3) return Promise.resolve();
       console.log('c:', c);
