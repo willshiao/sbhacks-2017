@@ -40,10 +40,18 @@ require([
     center: [-119.85, 34.41]  // Sets the center point of view in lon/lat
   });
 
-  const marker = new SimpleMarkerSymbol({
+  const greenMarker = new SimpleMarkerSymbol({
+    color: [0, 255, 0],
+    outline: { // autocasts as new SimpleLineSymbol()
+      color: [0, 0, 0],
+      width: 2
+    }
+  });
+
+  const redMarker = new SimpleMarkerSymbol({
     color: [226, 119, 40],
     outline: { // autocasts as new SimpleLineSymbol()
-      color: [0, 255, 0],
+      color: [0, 0, 0],
       width: 2
     }
   });
@@ -59,7 +67,7 @@ require([
           latitude: p.coords[0],
           longitude: p.coords[1]
         }),
-        symbol: marker,
+        symbol: (p.inventory.length === 0) ? redMarker : greenMarker,
         attributes: p.info,
         popupTemplate: new PopupTemplate({ // autocasts as new PopupTemplate()
           title: '{Name}',
