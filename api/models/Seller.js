@@ -9,6 +9,11 @@ const sellerSchema = new Schema({
     Hours: String,
   },
   coords: [Number, Number],
+  inventory: [{
+    name: String,
+    quantity: Number,
+    unit: String,
+  }]
 });
 
 module.exports = mongoose.model('Seller', sellerSchema);

@@ -26,9 +26,10 @@ require([
   'esri/views/MapView',
   'esri/Graphic',
   'esri/geometry/Point',
+  'esri/PopupTemplate',
   'esri/symbols/SimpleMarkerSymbol',
   'dojo/domReady!'
-], function(Map, MapView, Graphic, Point, SimpleMarkerSymbol){
+], function(Map, MapView, Graphic, Point, PopupTemplate, SimpleMarkerSymbol) {
   var map = new Map({
     basemap: 'streets'
   });
@@ -56,15 +57,21 @@ require([
         }),
         symbol: marker,
         attributes: p.info,
-        popupTemplate: { // autocasts as new PopupTemplate()
+        popupTemplate: new PopupTemplate({ // autocasts as new PopupTemplate()
           title: '{Name}',
-          content: [{
-            type: 'fields',
-            fieldInfos: [{
-              fieldName: 'Name'
-            }]
-          }]
-        }
+          content: [
+            {
+              type: 'fields',
+              fieldInfos: [{
+                fieldName: 'Name'
+              }]
+            },
+            {
+              type: 'text',
+              text: 'This is a test!',
+            }
+          ]
+        })
       });
     });
 
