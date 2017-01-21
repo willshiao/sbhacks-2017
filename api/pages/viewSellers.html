@@ -23,24 +23,36 @@
     src="https://code.jquery.com/jquery-3.1.1.min.js"
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
-  <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-  <script>
-    $(document).ready(function(){
-        $('#myTable').DataTable({
-          ajax: {
-            url: '/sellers',
-            dataSrc: function(json) {
-              return json.map(item => {
-                item.latitude = item.coords[0];
-                item.longitude = item.coords[1];
-                if(!item.inventory) item.inventory = [];
-                return item;
-              });
-            }
-          },
-          columns: [{data: '_id'}, {data: 'info.Name'}, {data: 'latitude'}, {data: 'longitude'}, {data: 'inventory'}]
-        });
+<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script>
+  'use strict';
+
+  $(function() {
+    $('#myTable').DataTable({
+      ajax: {
+        url: '/sellers',
+        dataSrc: function(json) {
+          return json.map(item => {
+            item.latitude = item.coords[0];
+            item.longitude = item.coords[1];
+            if(!item.inventory) item.inventory = [];
+            return item;
+          });
+        }
+      },
+      columns: [{data: '_id'}, {data: 'info.Name'}, {data: 'latitude'}, {data: 'longitude'}, {data: 'inventory'}],
+      aoColumnDefs: [
+        {
+          aTargets: [ 0 ], // Column to target
+          mRender: function(data, type, full) {
+           // 'full' is the row's data object, and 'data' is this column's data
+           // e.g. 'full[0]' is the comic id, and 'data' is the comic title
+            return '<a href="/pages/seller?' + full._id + '">' + data + '</a>';
+          }
+        }
+      ]
     });
-  </script>
+  });
+</script>
 </body>
 </html>
