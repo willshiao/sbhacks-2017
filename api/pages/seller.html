@@ -3,49 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>View Inventory</title>
-  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 </head>
 <body>
-  <h1 id="seller">Seller</h1>
-  <table>
-    <tr>
-      <td>Latitude</td>
-      <td id="lat"></td>
-    </tr>
-    <tr>
-      <td>Longitude</td>
-      <td id="long"></td>
-    </tr>
-  </table>
-
-  <h2>Inventory Items</h2>
-  <table id="inventoryItems">
-  </table>
-
-  <h2>Add Inventory Item</h2>
-  <form action="/sellers/addInventory" method="POST">
-
-    <input type="hidden" id="sellerId" name="sellerId">
-	<div class="form-group>
-    <label for="itemName">Food Name</label>
-	</div>
-	<div class="form-group">
-	<input type="text" id="name" class="form-control" placeholder="item name" required>
-	</div>
-	<div class="form-group">
-    <label for="itemQuantity">Food Quantity</label>
-	</div>
-    <input type="number" id="itemQuantity" class="form-control" placeholder=quantity>
-	<div>
-    <label for="itemUnit">Food Unit</label>
-	</div>
-    <input type="text" id="itemUnit" class="form-control" placeholder="food unit" name="itemUnit">
-    <button type="submit">Add</button>
-  </form>
+  <div class="container">
+    <h1 id="seller">Seller</h1>
+    <table>
+      <tr>
+        <td>Latitude:</td>
+        <td id="lat"></td>
+      </tr>
+      <tr>
+        <td>Longitude:</td>
+        <td id="long"></td>
+      </tr>
+    </table>
+  
+    <h2>Inventory Items</h2>
+    <table id="inventoryItems">
+    </table>
+  
+    <h2>Add Inventory Item</h2>
+    <form action="/sellers/addInventory" method="POST">
+  
+      <input type="hidden" id="sellerId" name="sellerId">
+      <div class="form-group>
+        <label for="itemName">Food Name</label>
+       <input type="text" id="name" class="form-control" placeholder="Item Name" required>
+      </div>
+      <div class="form-group">
+        <label for="itemQuantity">Food Quantity</label>
+        <input type="number" id="itemQuantity" class="form-control" placeholder="Quantity">
+      </div>
+      <div class="form-group">
+        <label for="itemUnit">Food Unit</label>
+        <input type="text" id="itemUnit" class="form-control" placeholder="Unit" name="itemUnit">
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script>
   'use strict';
 
