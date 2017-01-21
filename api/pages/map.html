@@ -50,6 +50,10 @@ require([
 
   $.get('/sellers', function(data) {
     const points = data.map(p => {
+      if(!p.inventory) p.inventory = [];
+      p.inventory.forEach(i => {
+        p.info[i.name] = `${i.quantity} ${i.unit}`;
+      });
       return new Graphic({
         geometry: new Point({
           latitude: p.coords[0],
@@ -62,14 +66,8 @@ require([
           content: [
             {
               type: 'fields',
-              fieldInfos: [{
-                fieldName: 'Name'
-              }]
+              fieldInfos: p.inventory.map(i => { return {fieldName: i.name}; }),
             },
-            {
-              type: 'text',
-              text: 'This is a test!',
-            }
           ]
         })
       });
