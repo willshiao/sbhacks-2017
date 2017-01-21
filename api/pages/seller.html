@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>View Inventory</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+
 </head>
 <body>
   <div class="container">
@@ -21,6 +23,13 @@
   
     <h2>Inventory Items</h2>
     <table id="inventoryItems">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Qty</th>
+          <th>Unit</th>
+        </tr>
+      </thead>
     </table>
   
     <h2>Add Inventory Item</h2>
@@ -47,6 +56,7 @@
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script>
   'use strict';
 
@@ -58,8 +68,9 @@
     $('#seller').text(data.info.Name);
     $('#lat').text(data.coords[0]);
     $('#long').text(data.coords[1]);
-    data.inventory.forEach(item => {
-      $('#inventoryItems').append(`<tr><td>${item.name}</td><td>${item.quantity} ${item.unit}</td></tr>`);
+    $('#inventoryItems').DataTable({
+      data: data.inventory,
+      columns: [{data: 'name'}, {data: 'quantity'}, {data: 'unit'}]
     });
   });
 </script>
