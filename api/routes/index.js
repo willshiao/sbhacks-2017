@@ -11,7 +11,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 // router.use(bodyParser.json());
 
 router.get('/', (req, res) => {
-  fs.createReadStream('pages/map.html').pipe(res);
+  fs.createReadStream('pages/hackathon.html').pipe(res);
 });
 
 router.get('/sellers', (req, res) => {
