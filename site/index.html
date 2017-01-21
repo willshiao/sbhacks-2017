@@ -33,13 +33,7 @@ require([
     center: [15, 65]  // Sets the center point of view in lon/lat
   });
 
-  var point = new Point({
-    longitude: -49.97,
-    latitude: 41.73
-  });
-
-  // Create a symbol for drawing the point
-  var markerSymbol = new SimpleMarkerSymbol({
+  const marker = new SimpleMarkerSymbol({
     color: [226, 119, 40],
     outline: { // autocasts as new SimpleLineSymbol()
       color: [0, 255, 0],
@@ -47,13 +41,20 @@ require([
     }
   });
 
-  // Create a graphic and add the geometry and symbol to it
-  var pointGraphic = new Graphic({
-    geometry: point,
-    symbol: markerSymbol
+  const points = [
+    [ 34.410938, -119.847057 ],
+    [ 34.413242, -119.855637 ]
+  ].map(p => {
+    return new Graphic({
+      geometry: new Point({
+        latitude: p[0],
+        longitude: p[1]
+      }),
+      symbol: marker
+    });
   });
 
-  view.graphics.add(pointGraphic);
+  view.graphics.addMany(points);
 });
 </script>
 </head>
