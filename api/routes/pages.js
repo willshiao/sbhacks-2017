@@ -5,13 +5,13 @@ const fs = require('fs');
 const path = require('path');
 
 router.get('/:pageName', (req, res) => {
-  try{
-    console.log('Loading page: ', path.join('pages/', req.params.pageName + '.html'));
-    fs.createReadStream(path.join('pages/', req.params.pageName + '.html'))
-      .pipe(res);
-  } catch(err) {
+  console.log('Loading page: ', path.join('pages/', req.params.pageName + '.html'));
+  const rs = fs.createReadStream(path.join('pages/', req.params.pageName + '.html'));
+
+  rs.on('error', err => {
     return res.json({error: err});
-  }
+  });
+  rs.pipe(res);
 });
 
 module.exports = router;

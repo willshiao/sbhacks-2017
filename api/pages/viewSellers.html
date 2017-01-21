@@ -9,6 +9,7 @@
   <table id="myTable" class="display">
       <thead>
           <tr>
+              <th>ID</th>
               <th>Name</th>
               <th>Latitude</th>
               <th>Longitude</th>
@@ -37,7 +38,7 @@
               });
             }
           },
-          columns: [{data: 'info.Name'}, {data: 'latitude'}, {data: 'longitude'}, {data: 'inventory'}]
+          columns: [{data: '_id'}, {data: 'info.Name'}, {data: 'latitude'}, {data: 'longitude'}, {data: 'inventory'}]
         });
     });
   </script>
