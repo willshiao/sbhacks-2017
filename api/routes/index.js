@@ -5,9 +5,14 @@ const Seller = require('../models/Seller');
 const bodyParser = require('body-parser');
 const Promise = require('bluebird');
 const _ = require('lodash');
+const fs = require('fs');
 
 router.use(bodyParser.urlencoded({extended: true}));
 // router.use(bodyParser.json());
+
+router.get('/', (req, res) => {
+  fs.createReadStream('pages/map.html').pipe(res);
+});
 
 router.get('/sellers', (req, res) => {
   Seller.find().lean().exec()
