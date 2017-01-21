@@ -7,7 +7,7 @@ const Promise = require('bluebird');
 const _ = require('lodash');
 
 router.use(bodyParser.urlencoded({extended: true}));
-router.use(bodyParser.json());
+// router.use(bodyParser.json());
 
 router.get('/sellers', (req, res) => {
   Seller.find().lean().exec()
@@ -56,6 +56,18 @@ router.post('/sellers/bulk', (req, res) => {
     })
     .catch(err => {
       return res.json({success: false, error: err});
+    });
+});
+
+router.post('/sellers/addInventory', (req, res) => {
+  console.log('Finding seller with ID:', req.body.sellerId);
+  Seller.findById(req.body.sellerId)
+    .then(item => {
+      if(!item.inventory) item.inventory = [];
+      item.inventory.push({name: req.body.itemName, quantity: req.body.itemQuantity, unit: req.body.itemUnit});
+      return item.save();
+    }).then(() => {
+      return res.json({success: true});
     });
 });
 

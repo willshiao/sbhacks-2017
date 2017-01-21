@@ -45,9 +45,17 @@
         {
           aTargets: [ 0 ], // Column to target
           mRender: function(data, type, full) {
-           // 'full' is the row's data object, and 'data' is this column's data
-           // e.g. 'full[0]' is the comic id, and 'data' is the comic title
             return '<a href="/pages/seller?' + full._id + '">' + data + '</a>';
+          }
+        }, {
+          aTargets: [ 4 ], // Column to target
+          mRender: function(data, type, full) {
+            let str = '';
+            if(!data || data.length == 0) return '';
+            full.inventory.forEach(item => {
+              str += `${item.name} ${item.quantity} ${item.unit}, `;
+            });
+            return str;
           }
         }
       ]
