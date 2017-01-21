@@ -11,6 +11,7 @@ const pageRoutes = require('./routes/pages');
 
 app.use('/', indexRoutes);
 app.use('/pages', pageRoutes);
+app.use(express.static('public'));
 
 app.listen(config.get('port'), () => {
   console.log('App listening on port ' + config.get('port'));
