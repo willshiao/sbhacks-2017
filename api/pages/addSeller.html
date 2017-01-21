@@ -7,11 +7,11 @@
 <body>
   <form action="/sellers" method="POST">
     <label for="name">Location Name</label>
-    <input type="text" name="name">
+    <input type="text" name="name" required>
     <label for="latitude">Latitude</label>
-    <input type="number" type="any" name="latitude" id="latitude">
+    <input type="number" type="any" step="any" name="latitude" id="latitude" required>
     <label for="longitude">Longitude</label>
-    <input type="number" type="any" name="longitude" id="longitude">
+    <input type="number" type="any" step="any" name="longitude" id="longitude" required>
     <button type="submit">Add Location</button>
   </form>
 </body>

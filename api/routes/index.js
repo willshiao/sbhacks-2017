@@ -14,7 +14,18 @@ router.get('/sellers', (req, res) => {
 });
 
 router.post('/sellers', (req, res) => {
-
+  new Seller({
+    info: {
+      Name: req.body.name,
+    },
+    coords: [req.body.latitude, req.body.longitude]
+  }).save()
+    .then(() => {
+      return res.json({success: true});
+    })
+    .catch(err => {
+      return res.json({success: false, error: err});
+    })
 });
 
 module.exports = router;
