@@ -47,42 +47,30 @@ require([
     }
   });
 
-  let points = [
-    {
-      info: {
-        Name: 'Ortega Dining Commmons',
-      },
-      coords: [ 34.410938, -119.847057 ]
-    },
-    {
-      info: {
-        Name: 'Freebirds',
-      },
-      coords: [ 34.413242, -119.855637 ]
-    }
-  ];
-
-  points = points.map(p => {
-    return new Graphic({
-      geometry: new Point({
-        latitude: p.coords[0],
-        longitude: p.coords[1]
-      }),
-      symbol: marker,
-      attributes: p.info,
-      popupTemplate: { // autocasts as new PopupTemplate()
-        title: '{Name}',
-        content: [{
-          type: 'fields',
-          fieldInfos: [{
-            fieldName: 'Name'
+  $.get('/sellers', function(data) {
+    const points = data.map(p => {
+      return new Graphic({
+        geometry: new Point({
+          latitude: p.coords[0],
+          longitude: p.coords[1]
+        }),
+        symbol: marker,
+        attributes: p.info,
+        popupTemplate: { // autocasts as new PopupTemplate()
+          title: '{Name}',
+          content: [{
+            type: 'fields',
+            fieldInfos: [{
+              fieldName: 'Name'
+            }]
           }]
-        }]
-      }
+        }
+      });
     });
+
+    view.graphics.addMany(points);
   });
 
-  view.graphics.addMany(points);
 });
 </script>
 </head>
