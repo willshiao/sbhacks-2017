@@ -50,6 +50,8 @@
       </div>
       <button type="submit" class="btn btn-primary">Add</button>
     </form>
+    <hr>
+    <button id="deleteBtn" class="btn btn-primary">Delete</button>
   </div>
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -62,7 +64,22 @@
 
   const searchStr = window.location.search.slice(1);
   console.log('Search:', searchStr);
-  $('#sellerId').val(searchStr);
+
+  $(function() {
+    $('#sellerId').val(searchStr);
+
+    $('#deleteBtn').click(function(evt) {
+      evt.preventDefault();
+      $.ajax({
+        url: '/sellers/' + searchStr,
+        method: 'DELETE',
+      }).done(function(data) {
+        console.log('Done:', data);
+        window.location.href = '/pages/viewSellers';
+      });
+    });
+  });
+
 
   $.get('/sellers/' + searchStr, function(data) {
     $('#seller').text(data.info.Name);

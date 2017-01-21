@@ -28,6 +28,14 @@ router.get('/sellers/:id', (req, res) => {
     });
 });
 
+router.delete('/sellers/:id', (req, res) => {
+  Seller.findByIdAndRemove(req.params.id).exec()
+    .then(data => {
+      res.json({success: true});
+    })
+    .catch(err => res.json({success: false, error: err}));
+});
+
 router.post('/sellers', (req, res) => {
   new Seller({
     info: {
