@@ -1,10 +1,15 @@
 .btn btn-primary{
 	color: black; 
 }
+body.no-logo {
+	background-image: url('/img/no-logo-background.png');
+}
+body.logo {
+	background-image: url('/img/map-background.png');
+}
 body{
-  background-image: url('/img/map-background.png');
   background-size: 100%;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
 }
 .jumbotron{
 	background-color: rgba(0,0,0,0);
