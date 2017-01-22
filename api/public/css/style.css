@@ -3,6 +3,8 @@
 }
 body{
   background-image: url('/img/map-background.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .jumbotron{
 	background-color: rgba(0,0,0,0);
