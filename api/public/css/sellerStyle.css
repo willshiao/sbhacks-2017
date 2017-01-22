@@ -1,0 +1,16 @@
+body{
+	background-color: rgb(211,211,211);
+}
+#seller, .seller{
+	text-align: center;
+	padding-top: 20px;
+}
+.form-group{
+	font-size: 20px;
+}
+.addItems, .changeInventory, .inventory{
+	padding: 20px;
+}
+#tbl{
+	padding-left: 20px;
+}
