@@ -44,6 +44,7 @@ router.post('/sellers', authenticate, (req, res) => {
   new Seller({
     info: {
       Name: req.body.name,
+      Address: req.body.address || 'None'
     },
     coords: [req.body.latitude, req.body.longitude]
   }).save()
@@ -59,12 +60,12 @@ router.post('/sellers/bulk', authenticate, (req, res) => {
   Promise.all(
     _(req.body.bulk.split(/\r?\n/))
       .filter(s => s.trim().length > 0)
-      .chunk(3)
+      .chunk(4)
       .map(c => {
-        if(c.length < 3) return Promise.resolve();
+        if(c.length < 4) return Promise.resolve();
         console.log('c:', c);
         return new Seller({
-          info: {Name: c[0]},
+          info: {Name: c[0], Address: c[4]},
           coords: [c[1], c[2]]
         }).save();
       }))

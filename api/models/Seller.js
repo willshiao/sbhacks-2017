@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const sellerSchema = new Schema({
   info: {
     Name: String,
-    Hours: String,
+    Address: String,
   },
   coords: [Number, Number],
   inventory: [{
