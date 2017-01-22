@@ -53,8 +53,8 @@ h1, p, #description{
 	position: relative;
 }
 #description{
-	background-color: rgba(0,0,0,0.08);
-	color: rgb(0,0,174);
+	/*background-color: rgba(0,0,0,0.08);*/
+	color: white;
 	width: 60%;
 	margin-bottom: 100px;
 }
