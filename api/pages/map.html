@@ -75,7 +75,7 @@ require([
           content: [
             {
               type: 'text',
-              text: `<a href="javascript:void(0);" onclick="window.location=\'geo:${p.coords[0]},${p.coords[1]}\'">Open in Google Maps</a>`
+              text: `<a href="javascript:void(0);" onclick="window.open(\'geo:${p.coords[0]},${p.coords[1]}\')">Open in Google Maps</a>`
             }, {
               type: 'fields',
               fieldInfos: p.inventory.map(i => { return {fieldName: i.name}; }),
