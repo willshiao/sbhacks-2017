@@ -1,0 +1,60 @@
+.btn btn-primary{
+	color: black; 
+}
+body{
+	background: linear-gradient(272deg, #00d0ff, #030083);
+	background-size: 400% 400%;
+
+	-webkit-animation: GradientAnimation 11s ease infinite;
+	-moz-animation: GradientAnimation 11s ease infinite;
+	animation: GradientAnimation 11s ease infinite;
+  /* background-repeat: no-repeat; */
+}
+@-webkit-keyframes GradientAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes GradientAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+@keyframes GradientAnimation { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+.jumbotron{
+	background-color: rgba(0,0,0,0);
+}
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: brown;
+	font-size: 30px;
+	margin-top: 10px;
+}
+#btn1{
+	padding-right: 50px;
+}
+h1, .container{
+	color: brown;
+}
+h1{
+	font-size: 30px;
+}
+p{
+	font-size: 15px;
+}
+.homeButtons{
+	margin-top: 115px;
+}
+h1, p, #description{
+	text-align: center;
+	position: relative;
+}
+#description{
+	background-color: rgba(0,0,0,0.08);
+	color: rgb(0,0,174);
+	width: 60%;
+	margin-bottom: 100px;
+}

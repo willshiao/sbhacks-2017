@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>DevourPower</title>
-<style>
-  html, body, #viewDiv {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }
-</style>
-<link rel="stylesheet" href="https://js.arcgis.com/4.2/esri/css/main.css">
-<script src="https://js.arcgis.com/4.2/"></script>
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <title>DevourPower</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.2/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.2/"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
 <script>
 'use strict';
 
@@ -49,7 +50,7 @@ require([
   });
 
   const redMarker = new SimpleMarkerSymbol({
-    color: [226, 119, 40],
+    color: [255, 0, 0],
     outline: { // autocasts as new SimpleLineSymbol()
       color: [0, 0, 0],
       width: 2
@@ -73,6 +74,9 @@ require([
           title: '{Name}',
           content: [
             {
+              type: 'text',
+              text: `<a href="javascript:void(0);" onclick="window.open(\'https://www.google.com/maps/place/${p.coords[0]},${p.coords[1]}')">Open in Google Maps</a>`
+            }, {
               type: 'fields',
               fieldInfos: p.inventory.map(i => { return {fieldName: i.name}; }),
             },

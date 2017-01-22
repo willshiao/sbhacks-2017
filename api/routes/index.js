@@ -1,17 +1,21 @@
 'use strict';
 
+const fs = require('fs');
 const router = require('express').Router();
-const Seller = require('../models/Seller');
 const bodyParser = require('body-parser');
 const Promise = require('bluebird');
+const config = require('config');
+const auth = require('basic-auth');
 const _ = require('lodash');
-const fs = require('fs');
+
+const Seller = require('../models/Seller');
 
 router.use(bodyParser.urlencoded({extended: true}));
 // router.use(bodyParser.json());
 
+
 router.get('/', (req, res) => {
-  fs.createReadStream('pages/map.html').pipe(res);
+  fs.createReadStream('pages/hackathon.html').pipe(res);
 });
 
 router.get('/sellers', (req, res) => {
@@ -28,7 +32,7 @@ router.get('/sellers/:id', (req, res) => {
     });
 });
 
-router.delete('/sellers/:id', (req, res) => {
+router.delete('/sellers/:id', authenticate, (req, res) => {
   Seller.findByIdAndRemove(req.params.id).exec()
     .then(data => {
       res.json({success: true});
@@ -36,7 +40,7 @@ router.delete('/sellers/:id', (req, res) => {
     .catch(err => res.json({success: false, error: err}));
 });
 
-router.post('/sellers', (req, res) => {
+router.post('/sellers', authenticate, (req, res) => {
   new Seller({
     info: {
       Name: req.body.name,
@@ -51,7 +55,7 @@ router.post('/sellers', (req, res) => {
     });
 });
 
-router.post('/sellers/bulk', (req, res) => {
+router.post('/sellers/bulk', authenticate, (req, res) => {
   Promise.all(
     _(req.body.bulk.split(/\r?\n/))
       .filter(s => s.trim().length > 0)
@@ -72,7 +76,7 @@ router.post('/sellers/bulk', (req, res) => {
     });
 });
 
-router.post('/sellers/addInventory', (req, res) => {
+router.post('/sellers/addInventory', authenticate, (req, res) => {
   console.log('Finding seller with ID:', req.body.sellerId);
   Seller.findById(req.body.sellerId)
     .then(item => {
@@ -83,5 +87,18 @@ router.post('/sellers/addInventory', (req, res) => {
       return res.json({success: true});
     });
 });
+
+
+function authenticate(req, res, next) {
+  const credentials = auth(req);
+  if(!credentials || credentials.name !== config.get('credentials.name')
+    || credentials.pass !== config.get('credentials.pass')) {
+    res.statusCode = 401;
+    res.setHeader('WWW-Authenticate', 'Basic realm="Mangement Console"');
+    res.end('Access denied');
+  } else {
+    next();
+  }
+}
 
 module.exports = router;
