@@ -13,14 +13,4 @@
         android:layout_alignParentStart="true">
     </WebView>
 
-    <!--- <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="217dp"
-        android:layout_y="514dp"
-        android:id="@+id/button"
-        android:text="Register Location"
-        android:clickable="true"
-        android:onClick="reg"/> -->
-
 </RelativeLayout>
