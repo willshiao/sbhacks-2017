@@ -37,7 +37,7 @@
     <form action="/sellers/addInventory" method="POST">
   
       <input type="hidden" id="sellerId" name="sellerId">
-      <div class="form-group>
+      <div class="form-group">
         <label for="itemName">Food Name</label>
        <input type="text" id="name" class="form-control" placeholder="Item Name" required name="itemName">
       </div>
@@ -50,6 +50,13 @@
         <input type="text" id="itemUnit" class="form-control" placeholder="Unit" name="itemUnit">
       </div>
       <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <h2>Change Inventory Quantity</h2>
+    <form action="/sellers/editInventory" method="POST">
+      <div class="form-group">
+        <label for="itemName">Food Name</label>
+       <input type="text" id="name" class="form-control" placeholder="Item Name" required name="itemName">
+      </div>
     </form>
     <hr>
     <button id="deleteBtn" class="btn btn-primary">Delete</button>
